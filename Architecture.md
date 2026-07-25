@@ -109,7 +109,7 @@ sequenceDiagram
 **Problem it solves:** LLM context windows are finite and expensive. Without a memory layer, every session restarts from zero and every long conversation eventually truncates useful history. The Memory Engine is a persistence and retrieval layer, not "a bigger context window."
 
 | Memory Tier | Purpose | Storage (planned) |
-|---|---|---|---|
+|---|---|---|
 | Working memory | Active task state, current conversation | Redis |
 | Episodic memory | Past interactions, timestamped | PostgreSQL + pgvector |
 | Semantic memory | Facts, preferences, learned associations | Vector DB (Qdrant/Weaviate) |
