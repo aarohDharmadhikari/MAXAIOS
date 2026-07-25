@@ -108,12 +108,12 @@ sequenceDiagram
 
 **Problem it solves:** LLM context windows are finite and expensive. Without a memory layer, every session restarts from zero and every long conversation eventually truncates useful history. The Memory Engine is a persistence and retrieval layer, not "a bigger context window."
 
-| Memory Tier | Purpose | Storage (current) | Storage (planned) |
+| Memory Tier | Purpose | Storage (planned) |
 |---|---|---|---|
-| Working memory | Active task state, current conversation | In-process dict | Redis |
-| Episodic memory | Past interactions, timestamped | SQLite | PostgreSQL + pgvector |
-| Semantic memory | Facts, preferences, learned associations | ⚪ Not implemented | Vector DB (Qdrant/Weaviate) |
-| Procedural memory | Learned automation routines | ⚪ Not implemented | Structured task templates in Postgres |
+| Working memory | Active task state, current conversation | Redis |
+| Episodic memory | Past interactions, timestamped | PostgreSQL + pgvector |
+| Semantic memory | Facts, preferences, learned associations | Vector DB (Qdrant/Weaviate) |
+| Procedural memory | Learned automation routines | Structured task templates in Postgres |
 
 **Why tiered memory instead of "dump everything in a vector DB"?** Semantic search over undifferentiated memory returns noisy results — a user's five-year-old one-off question ranks the same as yesterday's stated preference. Tiering lets retrieval logic weight recency, frequency, and type differently, which is closer to how retrieval-augmented systems in production (e.g., long-context agent frameworks) actually behave.
 
