@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools==84.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "max-ai-os"
+version = "0.1.0"
+description = "Day 1 runtime foundation for MAX AI OS"
+readme = "DAY1.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi==0.141.1",
+    "uvicorn==0.53.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==9.1.1",
+    "httpx==0.28.1",
+    "ruff==0.16.8",
+    "black==26.5.1",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["max", "max.*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--import-mode=importlib"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 88
+src = ["src"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "ANN"]
+
+[tool.black]
+target-version = ["py311"]
+line-length = 88
